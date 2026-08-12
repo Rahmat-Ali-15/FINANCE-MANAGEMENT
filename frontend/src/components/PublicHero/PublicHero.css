@@ -1,0 +1,87 @@
+.publicHero-section{
+    padding: 4rem 10rem;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 50px;
+    background-color: var(--color-bg-secondary);
+}
+
+/* publicHero-left */
+.publicHero-left{
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.publicHero-badge{
+    width: fit-content;
+    padding: 5px 15px;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    border-radius: 20px;
+    border: 1px solid var(--color-income);
+    background-color: #effdf6;
+}
+
+.publicHero-badge>span:nth-child(2){
+    color: var(--color-primary);
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.publichero-badge-dot{
+    height: 5px;
+    width: 5px;
+    border-radius: 50%;
+    background-color: var(--color-primary);
+}
+
+.publicHero-title{
+    line-height: 1.1;
+    font-size: 52px;
+}
+
+.publicHero-description{
+    font-size: 19px;
+}
+
+.publicHero-actions{
+    display: flex;
+    gap: 10px;
+}
+
+.publicHero-btn{
+    border: 1px solid var(--color-border);
+    padding: 10px 24px;
+    border-radius: 7px;
+    font-weight: 600;
+}
+
+.publichero-btn-primary{
+    background-color: var(--color-primary);
+    color: var(--color-bg);
+}
+
+.publichero-btn-primary:hover{
+    filter: brightness(0.9);
+    transition: var(--transition-slow);
+}
+
+.publicHero-btn-secondary:hover{
+    border: 1px solid #000;
+    transition: var(--transition-slow );
+}
+
+.publicHero-caption{
+    font-size: 13px;
+    color: var(--color-text-muted);
+}
+
+
+/* publicHero-right */
+.publicHero-right{
+    width: 100%;
+    display: flex;
+    align-items: center;
+}

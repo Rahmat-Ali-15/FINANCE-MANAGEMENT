@@ -1,0 +1,172 @@
+.publicDashboardChart {
+  width: 100%;
+  border-radius: 10px;
+  background-color: var(--color-bg);
+  box-shadow:
+    rgba(0, 0, 0, 0.05) 0px 6px 24px 0px,
+    rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+}
+
+.publicDashboardChart-title-container {
+  padding: 15px;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.publicDashboardChart-title-container > div {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.publicDashboardChart-dot {
+  height: 7px;
+  width: 7px;
+  border-radius: 50%;
+  background-color: var(--color-primary);
+}
+
+.publicDashboardChart-title {
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.publicDashboardChart-date {
+  font-size: 13px;
+}
+
+/* publicDashboardChart-amount */
+.publicDashboardChart-amount {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.publicDashboardChart-amount > div {
+  border-right: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 15px;
+  line-height: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.publicDashboardChart-amount > div > span {
+  font-size: 10px;
+  font-weight: 500;
+}
+
+.publicDashboardChart-amount > div > span:nth-child(1) {
+  color: var(--color-text-muted);
+}
+
+.publicDashboardChart-amount > div > span:nth-child(3) {
+  color: var(--color-primary);
+}
+
+/* publicDashboardChart-wrapper */
+.publicDashboardChart-wrapper {
+  display: flex;
+  width: 100%;
+}
+
+.publicDashboardChart-container {
+  width: 58%;
+  border-right: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 15px;
+}
+
+.publicDashboardChart-container > p {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--color-text);
+  padding-bottom: 10px;
+}
+
+.publicDashboardChart-chart {
+  width: 100%;
+  height: 120px;
+}
+
+.publicDashboardChart-recent {
+  width: 42%;
+  padding: 15px;
+}
+
+.publicDashboardChart-recent > p {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--color-text);
+  padding-bottom: 10px;
+}
+
+.publicDashboardChart-recent > div {
+  display: flex;
+  flex-direction: column;
+  line-height: 0.8;
+  gap: 10px;
+}
+
+.publicDashboardChart-recent > div > div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.publicDashboardChart-recent > div > div > div:nth-child(1) > p {
+  font-size: 12px;
+  color: var(--color-text);
+}
+.publicDashboardChart-recent > div > div > div:nth-child(1) > span {
+  font-size: 10px;
+  color: var(--color-text-muted);
+  line-height: 1.1;
+}
+
+.publicDashboardChart-recent > div > div > div:nth-child(2) {
+  font-size: 11px;
+  font-weight: 500;
+}
+
+/* Chart tooltip */
+.expense-chart__tooltip {
+  position: absolute;
+  min-width: 135px;
+  padding: 10px 12px;
+
+  background: #ffffff;
+  border: 1px solid #e5e5e5;
+  border-radius: 5px;
+
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+
+  pointer-events: none;
+
+  opacity: 0;
+  z-index: 1000;
+
+  transition: opacity 0.1s ease;
+}
+
+.expense-chart__tooltip-month {
+  margin-bottom: 8px;
+
+  font-size: 13px;
+  font-weight: 500;
+
+  color: #222;
+}
+
+.expense-chart__tooltip-item {
+  font-size: 12px;
+  line-height: 1.8;
+}
+
+.expense-chart__tooltip-item--expense {
+  color: #ff8b8b;
+}
+
+.expense-chart__tooltip-item--income {
+  color: #16a34a;
+}

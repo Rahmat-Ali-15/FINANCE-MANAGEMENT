@@ -1,0 +1,34 @@
+.benifit-section{
+    padding: 2.5rem 10rem;
+    box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+}
+
+.benifit-container{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+.benifit-container>div:not(:last-child){
+    border-right: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.benifit-container>div>div:nth-child(1){
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.benifit-container>div>div:nth-child(1)>p{
+    font-weight: 600;
+    font-size: 16px;
+    color: var(--color-text);
+}
+
+.benifit-container>div>div:nth-child(2){
+    margin-left: 26px;
+    padding-right: 30px;
+}
+.benifit-container>div>div:nth-child(2)>span{
+    font-size: 15px;
+}

@@ -1,0 +1,76 @@
+.publicNavabar{
+    height: var(--navbar-height);
+    border-bottom: 1px solid var(--color-border-dark);
+    background-color: var(--color-bg-secondary);
+}
+
+.publicNavbar-container{
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+/* Logo */
+.publicNavbar-logo-container{
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.publicNavbar-logo{
+    background-color: var(--color-primary);
+    color: var(--color-primary-light);
+    padding: 5px;
+    border-radius: var(--radius-sm);
+}
+
+.publicNavbar-name{
+    font-weight: 700;
+}
+
+/* publicNavbar-menu */
+.publicNavbar-menu>ul{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 25px;
+}
+
+.publicNavbar-menu>ul>li a{
+    color: var(--color-text-secondary);
+    transition: var(--transition-slow);
+}
+.publicNavbar-menu>ul>li:hover a{
+    color: var(--color-text);
+}
+
+/* Acrions */
+.publicnavbar-action{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.publicNavbar-login{
+    font-weight: 600;
+    padding: 7px 10px;
+    border-radius: var(--radius-sm);
+}
+.publicNavbar-login:hover{
+    background-color: #f0f0f0;
+}
+
+.publicNavbar__cta{
+    background-color: var(--color-primary);
+    color: var(--color-bg);
+    padding: 7px 15px;
+    border-radius: var(--radius-sm);
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.publicNavbar__cta:hover{
+    filter: brightness(0.9);
+    transition: var(--transition-slow);
+}
