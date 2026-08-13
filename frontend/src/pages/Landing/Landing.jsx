@@ -5,6 +5,7 @@ import { Features } from "../../components/Features/Features";
 import { Goals } from "../../components/Goals/Goals";
 import { Process } from "../../components/Process/Process";
 import { PublicHero } from "../../components/PublicHero/PublicHero";
+import { Security } from "../../components/Security/Security";
 import "./Landing.css";
 
 export const Landing = () => {
@@ -25,6 +26,8 @@ export const Landing = () => {
                 <Goals />
 
                 <Process />
+
+                <Security />
 
             </section>
         </>

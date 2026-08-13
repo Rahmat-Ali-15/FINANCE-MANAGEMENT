@@ -28,7 +28,7 @@ export const Goals = () => {
 
     return (
         <>
-            <section className="goals-section">
+            <section className="goals-section" id="goals">
                 <div className="goals-container">
                     <div className="goals-heading">
                         <span>GOALS</span>
