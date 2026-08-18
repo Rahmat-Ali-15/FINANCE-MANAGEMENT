@@ -1,9 +1,11 @@
-import { PublicLayout } from "./layout/PublicLayout/PublicLayout"
+import { SignUp } from "./components/Register/SignUp"
+// import { PublicLayout } from "./layout/PublicLayout/PublicLayout"
 
 export const App = () => {
   return (
     <>
-      <PublicLayout />
+      {/* <PublicLayout /> */}
+      <SignUp />
     </>
   )
 }

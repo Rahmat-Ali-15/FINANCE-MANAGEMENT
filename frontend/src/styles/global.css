@@ -1,6 +1,7 @@
 /* ========================================
    1. CSS RESET
 ======================================== */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap');
 
 *,
 *::before,
@@ -19,12 +20,7 @@ body {
     min-width: 320px;
     min-height: 100vh;
 
-    font-family:
-        Inter,
-        -apple-system,
-        BlinkMacSystemFont,
-        "Segoe UI",
-        sans-serif;
+    font-family: "Poppins", sans-serif;
 
     line-height: 1.5;
     font-weight: 400;
