@@ -1,8 +1,11 @@
+import { NavLink } from "react-router-dom";
 import "./PublicNavbar.css";
 
 import { MdOutlineShowChart } from "react-icons/md";
 
 export const PublicNavbar = () => {
+
+   
 
     return (
         <>
@@ -29,7 +32,7 @@ export const PublicNavbar = () => {
 
                     {/* Actions */}
                     <div className="publicnavbar-action">
-                        <a href="/login" className="publicNavbar-login">Log In</a>
+                        <NavLink to="/signup" className="publicNavbar-login">Log In</NavLink>
                         <button className="publicNavbar__cta">Get Started Free</button>
                     </div>
                 </div>

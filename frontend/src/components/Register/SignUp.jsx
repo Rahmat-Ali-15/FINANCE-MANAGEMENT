@@ -1,6 +1,13 @@
+import { useNavigate } from "react-router-dom";
 import "./SignUp.css";
 
 export const SignUp = () => {
+  const navigate = useNavigate();
+
+  const closeSignUp = () => {
+    navigate("/");
+  };
+
   const signupField = [
     {
       label: "First Name",
@@ -32,7 +39,7 @@ export const SignUp = () => {
     },
     {
       label: "Confirm Password",
-      name: "password",
+      name: "confirmpassword",
       type: "password",
       placeholder: "Confirm password",
       required: true,
@@ -41,8 +48,22 @@ export const SignUp = () => {
 
   return (
     <>
-      <section className="signup-section">
-        <div className="signup-card">
+      <section
+        className="signup-section"
+        onClick={closeSignUp}
+      >
+        <div
+          className="signup-card"
+          onClick={(e) => e.stopPropagation()}
+        >
+          {/* Close Button */}
+          <button
+            type="button"
+            className="signup-close"
+            onClick={closeSignUp}
+          >
+            ×
+          </button>
           <div className="signup-heading">
             <h3>NEW REGISTRATION</h3>
           </div>
@@ -62,19 +83,22 @@ export const SignUp = () => {
               </div>
             ))}
             <div className="term-condition">
-              <input type="checkbox" />
+              <input
+                type="checkbox"
+                defaultChecked
+              />
               <p>
                 I agree to the <a href="#">Term of Service </a>and{" "}
                 <a href="#">Privacy Policy</a>
               </p>
             </div>
             <div className="signup-btn">
-              <button>Creat Account</button>
+              <button>Create Account</button>
             </div>
           </div>
           <div className="navigate-login">
             <p>Already have an account?</p>
-            <a href="#">Login In</a>
+            <a href="#">Log In</a>
           </div>
         </div>
       </section>
