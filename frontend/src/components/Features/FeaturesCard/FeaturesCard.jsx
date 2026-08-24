@@ -54,8 +54,8 @@ export const FeaturesCard = () => {
         <>
             <section className="featureCard-section">
                 {
-                    data && data.map((el) => (
-                        <div className="featureCard-content">
+                    data && data.map((el, id) => (
+                        <div className="featureCard-content" key={id}>
                             <div>{el.icon}</div>
                             <div>
                                 <p>{el.title}</p>

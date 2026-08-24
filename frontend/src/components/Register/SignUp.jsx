@@ -1,8 +1,20 @@
 import { useNavigate } from "react-router-dom";
 import "./SignUp.css";
+import {  useSelector } from "react-redux";
 
 export const SignUp = () => {
   const navigate = useNavigate();
+  // const dispatch = useDispatch()
+
+  const data = useSelector((state) => state.auth);
+  console.log("🚀 ~ data:", data);
+
+  // const handleSubmit = {
+  //   firstName: "",
+  //   lastName: "",
+  //   email: "",
+  //   password: "",
+  // }
 
   const closeSignUp = () => {
     navigate("/");
@@ -14,6 +26,7 @@ export const SignUp = () => {
       name: "firstname",
       type: "text",
       placeholder: "Enter first name",
+      autoComplete: "name",
       required: true,
     },
     {
@@ -21,6 +34,7 @@ export const SignUp = () => {
       name: "lastname",
       type: "text",
       placeholder: "Enter last name",
+      autoComplete: "name",
       required: true,
     },
     {
@@ -28,6 +42,7 @@ export const SignUp = () => {
       name: "email",
       type: "email",
       placeholder: "Enter email",
+      autoComplete: "email",
       required: true,
     },
     {
@@ -35,6 +50,7 @@ export const SignUp = () => {
       name: "password",
       type: "password",
       placeholder: "Create password",
+      autoComplete: "new-password",
       required: true,
     },
     {
@@ -42,6 +58,7 @@ export const SignUp = () => {
       name: "confirmpassword",
       type: "password",
       placeholder: "Confirm password",
+      autoComplete: "new-password",
       required: true,
     },
   ];
@@ -67,35 +84,38 @@ export const SignUp = () => {
           <div className="signup-heading">
             <h3>NEW REGISTRATION</h3>
           </div>
-          <div className="signup-card-details">
-            {signupField.map((el, id) => (
-              <div
-                key={id}
-                className="signup-details"
-              >
-                <label htmlFor="">{el.label}</label>
+          <form action="">
+            <div className="signup-card-details">
+              {signupField.map((el, id) => (
+                <div
+                  key={id}
+                  className="signup-details"
+                >
+                  <label htmlFor="">{el.label}</label>
+                  <input
+                    type={el.type}
+                    placeholder={el.placeholder}
+                    name={el.name}
+                    autoComplete={el.autoComplete}
+                    required={el.required}
+                  />
+                </div>
+              ))}
+              <div className="term-condition">
                 <input
-                  type={el.type}
-                  placeholder={el.placeholder}
-                  name={el.name}
-                  required={el.required}
+                  type="checkbox"
+                  defaultChecked
                 />
+                <p>
+                  I agree to the <a href="#">Term of Service </a>and{" "}
+                  <a href="#">Privacy Policy</a>
+                </p>
               </div>
-            ))}
-            <div className="term-condition">
-              <input
-                type="checkbox"
-                defaultChecked
-              />
-              <p>
-                I agree to the <a href="#">Term of Service </a>and{" "}
-                <a href="#">Privacy Policy</a>
-              </p>
+              <div className="signup-btn">
+                <button>Create Account</button>
+              </div>
             </div>
-            <div className="signup-btn">
-              <button>Create Account</button>
-            </div>
-          </div>
+          </form>
           <div className="navigate-login">
             <p>Already have an account?</p>
             <a href="#">Log In</a>

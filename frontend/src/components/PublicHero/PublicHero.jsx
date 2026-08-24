@@ -1,3 +1,4 @@
+import { NavLink } from "react-router-dom";
 import { PublicDashboardChart } from "../Charts/PublicDashboardChart/PublicDashboardChart";
 import "./PublicHero.css";
 
@@ -15,7 +16,9 @@ export const PublicHero = () => {
                     <p className="publicHero-description">Track your spending, stay on budget, and build <br /> toward your financial goals — all in one simple <br /> dashboard.</p>
 
                     <div className="publicHero-actions">
-                        <a href="/signup" className="publicHero-btn publichero-btn-primary">Get Started Free</a>
+                        <NavLink to="/signup" className="publicHero-btn publichero-btn-primary">
+                            Get Started Free
+                        </NavLink>
                         <a href="#feature" className="publicHero-btn publicHero-btn-secondary">Explore Features</a>
                     </div>
                     <p className="publicHero-caption">Track spending. Stay on budget. Reach your goals.</p>
