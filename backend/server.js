@@ -1,5 +1,7 @@
 import express from "express";
 import dotenv from "dotenv";
+import cookieParser from "cookie-parser";
+
 import { Connection } from "./config/db.js";
 import { userRoutes } from "./routes/user.routes.js";
 dotenv.config();
@@ -10,7 +12,7 @@ const server = express();
 
 
 //# Routes
-server.use(express.json());
+server.use(express.json(), cookieParser());
 
 server.use("/user", userRoutes);
 

@@ -2,7 +2,7 @@ import { UserModel } from "../models/User.model.js";
 import bcrypt from "bcrypt";
 
 
-//# Create User
+//# ======================== SignUp User or Create User =========================
 export const signup = async (req, res) => {
     try {
         const {firstName, lastName, email, password, confirmPassword} = req.body;
@@ -100,5 +100,124 @@ export const signup = async (req, res) => {
             }
         ) 
 
+    }
+}
+
+
+
+//# =========================== Login User ===============================
+export const login = async (req, res) => {
+    try {
+        const {email, password} = req.body;
+
+        //# Field validation
+        if(!email || !password){
+            return res.status(400).json(
+                {
+                    success: false,
+                    title: "Login Failed",
+                    message: "Email and Password are required.",
+                    reason: "One or more fields are empty."
+                }
+            )
+        }
+
+        //# Find user
+        const user = await UserModel.findOne({email});
+        
+        if(!user){
+            return res.status(400).json(
+                {
+                    success: false,
+                    title: "User not found",
+                    message: "No account was found with this email.",
+                    reason: "Check the email or create new account."
+                }
+            )
+        }
+
+        //# Compare password
+        const isPasswordValid = await bcrypt.compare(password, user.password);
+
+        if(!isPasswordValid){
+            return res.status(401).json(
+                {
+                    success: false,
+                    title: "Login Failed",
+                    message: "Incorrect Password",
+                    reason: "The password you entered is incorrect."
+                }
+            )
+        }
+
+        //# Generate JWT
+        const token = jwt.sign(
+            {
+                userId: user._id,
+            },
+            process.env.JWT_SECRET,
+            {
+                expiresIn: "1d"
+            }
+        );
+
+        //# Store JWT in cookie
+        res.cookie("token", token, {
+            httpOnly: false,
+            secure: false,
+            sameSite: "Lax",
+            maxAge: 24 * 60 * 60 * 1000
+        });
+
+        //# Remove password from response
+        const userResponse = user.toObject();
+        delete userResponse.password;
+        
+        //# Send Resonse
+        return res.status(200).json(
+            {
+                success: true,
+                title: "Welcome Back!",
+                message: "Login successful.",
+                description: "Redirecting you to your home...",
+                reason: "You have been successfully authenticated.",
+                userResponse
+            }
+        ) 
+
+    } catch (error) {
+        console.error("Login Error:", error);
+
+        //# Check if it's a MongoDB connection error
+        if (error.name === "MongooseError" || error.message.includes("connect")) {
+          return res.status(500).json({
+            success: false,
+            title: "Database Connection Error",
+            message: "Unable to connect to the database.",
+            reason:
+              "The server encountered a database issue. Please try again in a moment.",
+          });
+        }
+
+        //# Check if it's a JWT error
+        if (error.name === "JsonWebTokenError") {
+          return res.status(500).json({
+            success: false,
+            title: "Authentication Error",
+            message: "Failed to generate authentication token.",
+            reason: "Please try logging in again.",
+          });
+        }
+
+        //# Generic server error
+        return res.status(500).json({
+          success: false,
+          title: "Something Went Wrong",
+          message: "An unexpected error occurred during login.",
+          reason:
+            process.env.NODE_ENV === "development"
+              ? error.message
+              : "Please try again in a few moments.",
+        });
     }
 }
