@@ -1,6 +1,7 @@
 import { Route, Routes } from "react-router-dom"
-import { SignUp } from "../../components/Register/SignUp"
 import { PublicLayout } from "../../layout/PublicLayout/PublicLayout"
+import { SignUp } from "../../components/Register/SignUp"
+import { Login } from "../../pages/Login/Login"
 
 export const PublicRoute = () => {
     return(
@@ -9,6 +10,7 @@ export const PublicRoute = () => {
             <Route element={<PublicLayout />}>
                 <Route path="/" element={null} />
                 <Route path="/signup" element={<SignUp />} />
+                <Route path="/login" element={<Login />} />
             </Route>
         </Routes>
     )

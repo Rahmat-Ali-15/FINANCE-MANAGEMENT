@@ -32,7 +32,7 @@ export const PublicNavbar = () => {
 
                     {/* Actions */}
                     <div className="publicnavbar-action">
-                        <NavLink to="/signup" className="publicNavbar-login">Log In</NavLink>
+                        <NavLink to="/login" className="publicNavbar-login">Log In</NavLink>
                         <NavLink to="/signup">
                             <button className="publicNavbar__cta">Get Started Free</button>
                         </NavLink>

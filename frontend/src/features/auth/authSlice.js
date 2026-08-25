@@ -7,7 +7,7 @@ export const signupUser = createAsyncThunk(
   async (userData, thunkAPI) => {
     try {
       const data = await authService.signupUser(userData);
-      return data;
+      return data.data;
     } catch (error) {
       console.log("🚀 ~ error:", error);
       return thunkAPI.rejectWithValue(
@@ -38,6 +38,7 @@ const authSlice = createSlice({
     .addCase(signupUser.fulfilled, (state, action) => {
         state.isLoading = false,
         state.isError = false,
+        state.errorMessage = "";
         state.user = action.payload.user
     })
 

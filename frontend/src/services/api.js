@@ -1,6 +1,6 @@
 import axios from "axios"
 
 export const api = axios.create({
-    baseUrl: import.meta.env.VITE_URL,
-    Credential: true
+    baseURL: import.meta.env.VITE_URL,
+    withCredentials: true
 })

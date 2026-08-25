@@ -19,7 +19,7 @@ export const PublicHero = () => {
                         <NavLink to="/signup" className="publicHero-btn publichero-btn-primary">
                             Get Started Free
                         </NavLink>
-                        <a href="#feature" className="publicHero-btn publicHero-btn-secondary">Explore Features</a>
+                        <span id="features" className="publicHero-btn publicHero-btn-secondary">Explore Features</span>
                     </div>
                     <p className="publicHero-caption">Track spending. Stay on budget. Reach your goals.</p>
                 </div>

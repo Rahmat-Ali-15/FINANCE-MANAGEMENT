@@ -1,0 +1,135 @@
+.login-section {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  justify-content: flex-end;
+  background: rgba(0, 0, 0, 0.8);
+  animation: signupOverlay 0.3s ease forwards;
+}
+
+.login-card {
+  position: relative;
+  width: 420px;
+  padding: 70px 35px 15px 35px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  background: var(--color-bg);
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 5px 15px;
+  border-top-left-radius: 15px;
+  border-bottom-left-radius: 15px;
+  overflow-y: auto;
+  transform: translateX(100%);
+  animation: signupSlideIn 0.45s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes signupSlideIn {
+  from {
+    transform: translateX(100%);
+  }
+
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes signupOverlay {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+/* Login close */
+.login-close {
+  position: absolute;
+  top: 15px;
+  right: 25px;
+  width: 38px;
+  height: 38px;
+  border: none;
+  border-radius: 50%;
+  background: #e2e8f0;
+  color: #000;
+  font-size: 26px;
+  line-height: 1;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  animation: signupSlideOut 0.3s ease backwards;
+  z-index: 999;
+}
+
+.login-close:hover {
+  background: #fe6b35;
+  color: #fff;
+  transform: rotate(90deg);
+}
+
+/* login heading */
+.login-heading > h3 {
+  font-size: 20px;
+  text-align: center;
+  background: linear-gradient(135deg, #5fca8d 0%, #2e9f68 50%, #3b7d55 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 900;
+}
+
+
+/* Login details */
+.login-card-details {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.login-card-details > div {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.login-details > label {
+  font-weight: 500;
+  font-size: 14px;
+  color: var(--color-text);
+}
+
+.login-details > input {
+  padding: 10px 13px;
+  border: 1px solid var(--color-border-dark);
+  border-radius: 7px;
+  outline: none;
+}
+
+.login-details > input::placeholder {
+  color: var(--color-text-tertiary);
+}
+
+/* Login button */
+.login-btn > button {
+  margin-top: 10px;
+  padding: 12px;
+  font-weight: 500;
+  border-radius: 10px;
+  background: var(--color-primary);
+  color: var(--color-primary-light);
+}
+
+/* navigate-signup */
+.navigate-signup {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.navigate-signup > a {
+  color: var(--color-primary);
+  font-weight: 700;
+}

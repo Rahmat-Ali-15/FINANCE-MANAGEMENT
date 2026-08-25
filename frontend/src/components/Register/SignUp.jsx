@@ -1,20 +1,37 @@
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import "./SignUp.css";
-import {  useSelector } from "react-redux";
+import {  useDispatch } from "react-redux";
+import { useState } from "react";
+import { signupUser } from "../../features/auth/authSlice";
 
 export const SignUp = () => {
   const navigate = useNavigate();
-  // const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
-  const data = useSelector((state) => state.auth);
-  console.log("🚀 ~ data:", data);
+  //# Form 
+  const [formData, setFormData] = useState({
+      firstName: "",
+      lastName: "",
+      email: "",
+      password: "",
+      confirmPassword: ""
+  })
+  const handleSubmit = (e) => {
+   e.preventDefault();
 
-  // const handleSubmit = {
-  //   firstName: "",
-  //   lastName: "",
-  //   email: "",
-  //   password: "",
-  // }
+   dispatch(signupUser(formData));
+  }
+
+  const handleInput = (e) => {
+    const {name, value} = e.target;
+
+    setFormData((prev) => (
+      {
+        ...prev,
+        [name]: value
+      }
+    ))
+  }
 
   const closeSignUp = () => {
     navigate("/");
@@ -23,7 +40,7 @@ export const SignUp = () => {
   const signupField = [
     {
       label: "First Name",
-      name: "firstname",
+      name: "firstName",
       type: "text",
       placeholder: "Enter first name",
       autoComplete: "name",
@@ -31,7 +48,7 @@ export const SignUp = () => {
     },
     {
       label: "Last Name",
-      name: "lastname",
+      name: "lastName",
       type: "text",
       placeholder: "Enter last name",
       autoComplete: "name",
@@ -55,7 +72,7 @@ export const SignUp = () => {
     },
     {
       label: "Confirm Password",
-      name: "confirmpassword",
+      name: "confirmPassword",
       type: "password",
       placeholder: "Confirm password",
       autoComplete: "new-password",
@@ -84,20 +101,22 @@ export const SignUp = () => {
           <div className="signup-heading">
             <h3>NEW REGISTRATION</h3>
           </div>
-          <form action="">
+          <form action="" onSubmit={handleSubmit}>
             <div className="signup-card-details">
               {signupField.map((el, id) => (
                 <div
                   key={id}
                   className="signup-details"
                 >
-                  <label htmlFor="">{el.label}</label>
+                  <label htmlFor={el.name}>{el.label}</label>
                   <input
                     type={el.type}
                     placeholder={el.placeholder}
                     name={el.name}
                     autoComplete={el.autoComplete}
                     required={el.required}
+                    onChange={handleInput}
+                    value={formData[el.name]}
                   />
                 </div>
               ))}
@@ -111,14 +130,15 @@ export const SignUp = () => {
                   <a href="#">Privacy Policy</a>
                 </p>
               </div>
+
               <div className="signup-btn">
-                <button>Create Account</button>
+                <button type="submit">Create Account</button>
               </div>
             </div>
           </form>
           <div className="navigate-login">
             <p>Already have an account?</p>
-            <a href="#">Log In</a>
+            <NavLink to="/login">Log In</NavLink>
           </div>
         </div>
       </section>
