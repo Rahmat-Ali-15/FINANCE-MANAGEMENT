@@ -3,7 +3,6 @@ import "./Login.css";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { loginUser } from "../../features/auth/authSlice";
-// import { ErroModal } from "./ErroModal.jsx";
 import { ErrorModal } from "../../components/Modal/ErroModal";
 import { SuccessModal } from "../../components/Modal/SuccessModal";
 
@@ -11,9 +10,7 @@ export const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const { user, isError, success } = useSelector((state) => state.auth);
-  console.log("🚀 ~ success:", success);
-  console.log("🚀 ~ user:", user);
+  const { isError, success } = useSelector((state) => state.auth);
 
   //# Login user
   const [loginData, setLoginData] = useState({
@@ -112,7 +109,7 @@ export const Login = () => {
         </div>
       </section>
       {success && <SuccessModal />}
-      {isError && <ErrorModal />}
+      {isError && <ErrorModal redirectPath="/login" />}
     </>
   );
 };

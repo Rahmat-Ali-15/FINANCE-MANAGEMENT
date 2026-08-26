@@ -1,9 +1,16 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import "./SuccessModal.css";
 import { FaCheck } from "react-icons/fa6";
+import { NavLink } from "react-router-dom";
+import { clearSuccess } from "../../features/auth/authSlice";
 
-export const SuccessModal = () => {
+export const SuccessModal = ({redirectPath}) => {
+  const dispatch = useDispatch();
   const { success } = useSelector((state) => state.auth);
+
+  const closeModal = () => {
+      dispatch(clearSuccess());
+    };
 
   return (
     <>
@@ -19,7 +26,7 @@ export const SuccessModal = () => {
             <span>{success.message}</span>
           </div>
           <p className="success-desc">{success.description}</p>
-          <button className="continue-again-btn">Continue</button>
+          <NavLink className="continue-again-btn" to={redirectPath} onClick={closeModal}>Continue</NavLink>
         </div>
       </section>
     </>

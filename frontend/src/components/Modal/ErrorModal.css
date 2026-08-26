@@ -1,4 +1,4 @@
-.loginModal-section{
+.ErrorModal-section{
    position: fixed;
     inset: 0;
     display: flex;
@@ -8,7 +8,8 @@
     z-index: 999999;
 }
 
-.loginModal-container{
+.ErrorModal-container{
+    min-width: 400px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -19,7 +20,7 @@
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
-.loginModal-icon{
+.ErrorModal-icon{
     background-color: #f6dce1;
     padding: 20px;
     border-radius: 50%;
@@ -28,30 +29,31 @@
     align-items: center;
 }
 
-.login-message{
+.ErrorModal-message{
     align-items: center;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.login-message>h3{
+.ErrorModal-message>h3{
     font-size: 30px;
     margin-bottom: 15px;
 }
 
-.login-message>span{
+.ErrorModal-message>span{
     font-size: 15px;
 }
 
-.loginModal-icon>div{
+.ErrorModalModal-icon>div{
     padding: 10px;
     background-color: #ef4344;
     border-radius: 50%;
     color: #fff;
 }
 
-.login-reason{
+.ErrorModal-reason{
+    width: 100%;
     padding: 8px 15px;
     border: 1px solid rgba(239, 67, 68, 0.4);
     background-color: #f6e5e9;
@@ -59,13 +61,13 @@
     border-left: 5px solid rgb(239, 67, 68);
 }
 
-.login-reason>span{
+.ErrorModal-reason>span{
     color: #ef4344;
     font-weight: 600;
     font-size: 14px;
 }
 
-.login-reason>p{
+.ErrorModal-reason>p{
     font-size: 13px;
     width: 90%;
     color: var(--text_color);

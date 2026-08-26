@@ -11,7 +11,7 @@ export const signupUser = createAsyncThunk(
     } catch (error) {
       console.log("🚀 ~ error:", error);
       return thunkAPI.rejectWithValue(
-        error.response?.data?.message || "Signup Failed",
+        error.response?.data || "Signup Failed",
       );
     }
   },
@@ -46,6 +46,9 @@ const authSlice = createSlice({
     clearError: (state) => {
       state.isError = null;
     },
+    clearSuccess: (state) => {
+      state.success = null;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -59,12 +62,14 @@ const authSlice = createSlice({
       .addCase(signupUser.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isError = false;
+        state.success = action.payload
         state.errorMessage = "";
         state.user = action.payload.user;
       })
 
       .addCase(signupUser.rejected, (state, action) => {
         state.isLoading = false;
+        state.success = "";
         state.isError = true;
         state.errorMessage = action.payload;
       })
@@ -92,6 +97,6 @@ const authSlice = createSlice({
   },
 });
 
-export const { clearError } = authSlice.actions;
+export const { clearError, clearSuccess } = authSlice.actions;
 
 export const authReducer = authSlice.reducer;

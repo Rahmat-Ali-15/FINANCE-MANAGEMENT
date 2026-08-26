@@ -1,12 +1,16 @@
 import { NavLink, useNavigate } from "react-router-dom";
 import "./SignUp.css";
-import {  useDispatch } from "react-redux";
+import {  useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import { signupUser } from "../../features/auth/authSlice";
+import { ErrorModal } from "../Modal/ErroModal";
+import { SuccessModal } from "../Modal/SuccessModal";
 
 export const SignUp = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
+  const {success, isError} = useSelector((state) => state.auth)
 
   //# Form 
   const [formData, setFormData] = useState({
@@ -142,6 +146,12 @@ export const SignUp = () => {
           </div>
         </div>
       </section>
+      {
+        success && <SuccessModal redirectPath="/login" />
+      }
+      {
+        isError && <ErrorModal redirectPath="/signup" /> 
+      }
     </>
   );
 };

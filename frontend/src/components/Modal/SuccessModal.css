@@ -9,7 +9,7 @@
 }
 
 .successModal-container{
-    width: 400px;
+    width: 420px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -39,10 +39,12 @@
 .success-message>h3{
     font-size: 30px;
     margin-bottom: 15px;
+    text-align: center;
 }
 
 .success-message>span{
     font-size: 15px;
+    text-align: center;
 }
 
 .successModal-icon>div{
@@ -59,6 +61,7 @@
 .success-desc{
     color: var(--text_color);
     font-size: 14px;
+    text-align: center;
 }
 
 .continue-again-btn{
@@ -68,4 +71,7 @@
     border-radius: 10px;
     font-weight: 600;
     background: var(--color-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }

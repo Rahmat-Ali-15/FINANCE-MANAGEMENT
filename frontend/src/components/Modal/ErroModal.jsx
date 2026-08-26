@@ -4,8 +4,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { clearError } from "../../features/auth/authSlice";
 
-export const ErrorModal = () => {
-    const dispatch = useDispatch()
+export const ErrorModal = ({redirectPath}) => {
+  const dispatch = useDispatch();
   const { errorMessage } = useSelector((state) => state.auth);
 
   const closeModal = () => {
@@ -14,23 +14,23 @@ export const ErrorModal = () => {
 
   return (
     <>
-      <section className="loginModal-section">
-        <div className="loginModal-container">
-          <div className="loginModal-icon">
+      <section className="ErrorModal-section">
+        <div className="ErrorModal-container">
+          <div className="ErrorModal-icon">
             <div>
               <ImCross onClick={closeModal} />
             </div>
           </div>
-          <div className="login-message">
+          <div className="ErrorModal-message">
             <h3>{errorMessage.title}</h3>
             <span>{errorMessage.message}</span>
           </div>
-          <div className="login-reason">
+          <div className="ErrorModal-reason">
             <span>REASON</span>
             <p>{errorMessage.reason}</p>
           </div>
           <NavLink
-            to="/login"
+            to={redirectPath}
             className="try-again-btn"
             onClick={closeModal}
           >
