@@ -17,6 +17,23 @@ export const signupUser = createAsyncThunk(
   },
 );
 
+
+//# Login user
+export const loginUser = createAsyncThunk(
+  "auth/loginUser", async (userData, thunkAPI) => {
+    try {
+      const data = await authService.loginUser(userData);
+      return data.data
+    } catch (error) {
+      console.log("Error:", error);
+      return thunkAPI.rejectWithValue(
+        error.data?.data?.message || "Login Failed"
+      )
+    }
+  }
+) 
+
+
 const initialState = {
   user: null,
   isLoading: false,
@@ -30,22 +47,43 @@ const authSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
+
     //# Signup user 
     .addCase(signupUser.pending, (state) => {
-      ((state.isLoading = true), (state.isError = false));
+        state.isLoading = true;
+        state.isError = false;
     })
 
     .addCase(signupUser.fulfilled, (state, action) => {
-        state.isLoading = false,
-        state.isError = false,
+        state.isLoading = false;
+        state.isError = false;
         state.errorMessage = "";
         state.user = action.payload.user
     })
 
     .addCase(signupUser.rejected, (state, action) => {
-        state.isLoading = false,
-        state.isError = true,
+        state.isLoading = false;
+        state.isError = true;
         state.errorMessage = action.payload
+    })
+
+    //# Login user
+    .addCase(loginUser.pending, (state) => {
+      state.isLoading = true;
+      state.isError = false
+    })
+
+    .addCase(loginUser.fulfilled, (state, action) => {
+      state.isLoading = false;
+      state.isError = false;
+      state.errorMessage = "";
+      state.user = action.payload.user
+    })
+
+    .addCase(loginUser.rejected, (state, action) => {
+      state.isLoading = false;
+      state.isError = true;
+      state.errorMessage = action.payload
     })
   },
 });
