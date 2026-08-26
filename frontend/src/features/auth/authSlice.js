@@ -6,88 +6,92 @@ export const signupUser = createAsyncThunk(
   "auth/signupUser",
   async (userData, thunkAPI) => {
     try {
-      const data = await authService.signupUser(userData);
-      return data.data;
+      const response = await authService.signupUser(userData);
+      return response.data;
     } catch (error) {
       console.log("🚀 ~ error:", error);
       return thunkAPI.rejectWithValue(
-        error.data?.data?.message || "Signup Failed",
+        error.response?.data?.message || "Signup Failed",
       );
     }
   },
 );
 
-
 //# Login user
 export const loginUser = createAsyncThunk(
-  "auth/loginUser", async (userData, thunkAPI) => {
+  "auth/loginUser",
+  async (userData, thunkAPI) => {
     try {
-      const data = await authService.loginUser(userData);
-      return data.data
+      const response = await authService.loginUser(userData);
+      return response.data;
     } catch (error) {
       console.log("Error:", error);
-      return thunkAPI.rejectWithValue(
-        error.data?.data?.message || "Login Failed"
-      )
+      return thunkAPI.rejectWithValue(error.response?.data || "Login Failed");
     }
-  }
-) 
-
+  },
+);
 
 const initialState = {
   user: null,
   isLoading: false,
   isError: false,
-  errorMessage: ""
+  success: "",
+  errorMessage: "",
 };
 
 const authSlice = createSlice({
   name: "auth",
   initialState,
-  reducers: {},
+  reducers: {
+    clearError: (state) => {
+      state.isError = null;
+    },
+  },
   extraReducers: (builder) => {
     builder
 
-    //# Signup user 
-    .addCase(signupUser.pending, (state) => {
+      //# Signup user
+      .addCase(signupUser.pending, (state) => {
         state.isLoading = true;
         state.isError = false;
-    })
+      })
 
-    .addCase(signupUser.fulfilled, (state, action) => {
+      .addCase(signupUser.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isError = false;
         state.errorMessage = "";
-        state.user = action.payload.user
-    })
+        state.user = action.payload.user;
+      })
 
-    .addCase(signupUser.rejected, (state, action) => {
+      .addCase(signupUser.rejected, (state, action) => {
         state.isLoading = false;
         state.isError = true;
-        state.errorMessage = action.payload
-    })
+        state.errorMessage = action.payload;
+      })
 
-    //# Login user
-    .addCase(loginUser.pending, (state) => {
-      state.isLoading = true;
-      state.isError = false
-    })
+      //# Login user
+      .addCase(loginUser.pending, (state) => {
+        state.isLoading = true;
+        state.isError = false;
+      })
 
-    .addCase(loginUser.fulfilled, (state, action) => {
-      state.isLoading = false;
-      state.isError = false;
-      state.errorMessage = "";
-      state.user = action.payload.user
-    })
+      .addCase(loginUser.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isError = false;
+        state.success = action.payload;
+        state.errorMessage = "";
+        state.user = action.payload.user;
+      })
 
-    .addCase(loginUser.rejected, (state, action) => {
-      state.isLoading = false;
-      state.isError = true;
-      state.errorMessage = action.payload
-    })
+      .addCase(loginUser.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.success = "";
+        state.errorMessage = action.payload;
+      });
   },
 });
 
-// export const {} = authSlice.actions;
+export const { clearError } = authSlice.actions;
 
 export const authReducer = authSlice.reducer;
