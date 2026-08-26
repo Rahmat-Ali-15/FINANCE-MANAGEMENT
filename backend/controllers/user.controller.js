@@ -130,7 +130,7 @@ export const login = async (req, res) => {
             return res.status(400).json(
                 {
                     success: false,
-                    title: "User not found",
+                    title: "Account not found",
                     message: "No account was found with this email.",
                     reason: "Check the email or create new account."
                 }
@@ -180,7 +180,7 @@ export const login = async (req, res) => {
                 success: true,
                 title: "Welcome Back!",
                 message: "Login successful.",
-                description: "Redirecting you to your home...",
+                description: "Click Continue to go to your dashboard.",
                 reason: "You have been successfully authenticated.",
                 user: userResponse
             }
