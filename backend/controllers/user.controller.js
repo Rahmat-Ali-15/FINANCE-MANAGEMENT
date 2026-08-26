@@ -1,5 +1,6 @@
 import { UserModel } from "../models/User.model.js";
 import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken"
 
 
 //# ======================== SignUp User or Create User =========================
@@ -181,7 +182,7 @@ export const login = async (req, res) => {
                 message: "Login successful.",
                 description: "Redirecting you to your home...",
                 reason: "You have been successfully authenticated.",
-                userResponse
+                user: userResponse
             }
         ) 
 
