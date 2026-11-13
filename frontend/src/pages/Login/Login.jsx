@@ -5,18 +5,21 @@ import { useDispatch, useSelector } from "react-redux";
 import { loginUser } from "../../features/auth/authSlice";
 import { ErrorModal } from "../../components/Modal/ErroModal";
 import { SuccessModal } from "../../components/Modal/SuccessModal";
+import { Loader } from "../../components/Loader/Loader";
 
 export const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const { isError, success } = useSelector((state) => state.auth);
+  const { isError, success, isLoading, isAuthenticated } = useSelector((state) => state.auth);
+  console.log("🚀 ~ isAuthenticated:", isAuthenticated);
 
   //# Login user
   const [loginData, setLoginData] = useState({
     email: "",
     password: "",
   });
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -46,7 +49,7 @@ export const Login = () => {
       name: "password",
       type: "password",
       placeholder: "Create password",
-      autoComplete: "new-password",
+      autoComplete: "current-password",
       required: true,
     },
   ];
@@ -57,6 +60,11 @@ export const Login = () => {
 
   return (
     <>
+      {isLoading && (
+        <div className="global-loader-overlay">
+          <Loader />
+        </div>
+      )}
       <section
         className="login-section"
         onClick={closeLogin}
@@ -76,7 +84,6 @@ export const Login = () => {
             <h3>Login</h3>
           </div>
           <form
-            action=""
             onSubmit={handleSubmit}
           >
             <div className="login-card-details">
@@ -98,7 +105,9 @@ export const Login = () => {
                 </div>
               ))}
               <div className="login-btn">
-                <button type="submit">Log In</button>
+                <button type="submit" disabled={isLoading}>
+                  Log In
+                </button>
               </div>
               <div className="navigate-signup">
                 <span>Don't have an account</span>
@@ -108,8 +117,12 @@ export const Login = () => {
           </form>
         </div>
       </section>
-      {success && <SuccessModal />}
-      {isError && <ErrorModal redirectPath="/login" />}
+      {
+        isLoading ? "Loading..." : <>
+          {success && <SuccessModal redirectPath="/home" />}
+          {isError && <ErrorModal redirectPath="/login" />}
+        </>
+      }
     </>
   );
 };
